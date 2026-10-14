@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Waqas Abdali — Digital Contact</title>
+    <meta
+      name="description"
+      content="The digital contact card of Waqas Abdali. Connect via Instagram, Facebook, Email, or WhatsApp."
+    />
+    <meta name="theme-color" content="#050505" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23050505'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' fill='%23F5F5F5' text-anchor='middle'%3EWA%3C/text%3E%3Crect y='58' width='64' height='6' fill='%23C8102E'/%3E%3C/svg%3E"
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ============================================================
+         TOKENS
+         ============================================================ */
+      :root {
+        --obsidian: #050505;
+        --charcoal: #101010;
+        --elevated: #191919;
+        --silver: #c5c5c5;
+        --white: #f5f5f5;
+        --crimson: #c8102e;
+        --glow: rgba(200, 16, 46, 0.25);
+
+        --line: rgba(245, 245, 245, 0.09);
+        --line-strong: rgba(245, 245, 245, 0.16);
+        --muted: rgba(197, 197, 197, 0.58);
+        --muted-2: rgba(197, 197, 197, 0.4);
+
+        --serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
+        --sans:
+          "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        background: var(--obsidian);
+        color: var(--silver);
+        font-family: var(--sans);
+        font-weight: 300;
+        font-size: 15px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+      }
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: 0;
+        cursor: pointer;
+      }
+
+      ::selection {
+        background: var(--crimson);
+        color: var(--white);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--crimson);
+        outline-offset: 3px;
+        border-radius: 1px;
+      }
+
+      /* ============================================================
+         MOBILE CARD
+         ============================================================ */
+      .card {
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        min-height: 100svh;
+        padding: 36px 20px 44px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      /* Name */
+      .identity {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .identity__eyebrow {
+        font-size: 0.58rem;
+        letter-spacing: 0.38em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .identity__name {
+        font-family: var(--serif);
+        font-weight: 300;
+        font-size: clamp(2.6rem, 14vw, 4rem);
+        line-height: 0.95;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--white);
+      }
+      .identity__name .accent {
+        display: block;
+        width: clamp(40px, 10vw, 84px);
+        height: 2px;
+        background: var(--crimson);
+        margin-bottom: 14px;
+        box-shadow: 0 0 18px var(--glow);
+      }
+
+      /* Portrait */
+      .portrait {
+        position: relative;
+        aspect-ratio: 4/5;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        background: linear-gradient(160deg, var(--elevated), #0a0a0a);
+        box-shadow:
+          0 30px 70px -45px rgba(0, 0, 0, 0.95),
+          0 0 70px -35px var(--glow);
+      }
+      .portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+        filter: grayscale(0.22) contrast(1.06) brightness(0.9);
+      }
+      .portrait::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(5, 5, 5, 0.18) 0%,
+            rgba(5, 5, 5, 0.62) 100%
+          ),
+          radial-gradient(
+            circle at 100% 100%,
+            rgba(200, 16, 46, 0.3),
+            transparent 46%
+          ),
+          radial-gradient(circle at 0% 0%, rgba(5, 5, 5, 0.5), transparent 55%);
+      }
+      .portrait-edge {
+        position: absolute;
+        top: 8%;
+        right: -1px;
+        width: 2px;
+        height: 38%;
+        background: linear-gradient(
+          180deg,
+          rgba(200, 16, 46, 0),
+          var(--crimson)
+        );
+        box-shadow: 0 0 22px var(--glow);
+        z-index: 3;
+      }
+      .portrait-placeholder {
+        position: absolute;
+        inset: 14px;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-align: center;
+        padding: 24px;
+        border: 1px dashed rgba(197, 197, 197, 0.22);
+      }
+      .portrait-placeholder span {
+        font-size: 0.66rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--silver);
+      }
+      .portrait-placeholder small {
+        font-size: 0.66rem;
+        letter-spacing: 0.06em;
+        color: var(--muted-2);
+        max-width: 24ch;
+        line-height: 1.6;
+      }
+
+      /* Bio */
+      .bio {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.8;
+        padding-left: 14px;
+        border-left: 2px solid var(--crimson);
+        max-width: 46ch;
+      }
+      .bio.placeholder {
+        color: var(--muted-2);
+        font-style: italic;
+      }
+
+      /* ============================================================
+         SOCIAL LINKS — icon + label, with hover effect
+         ============================================================ */
+      .links {
+        display: grid;
+        gap: 12px;
+        margin-top: 4px;
+      }
+
+      .link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-height: 64px;
+        padding: 12px 18px 12px 16px;
+        border: 1px solid var(--line);
+        background: linear-gradient(140deg, var(--charcoal), #0a0a0a);
+        text-decoration: none;
+        color: var(--silver);
+        overflow: hidden;
+        transition:
+          border-color 0.35s ease,
+          box-shadow 0.35s ease,
+          transform 0.35s var(--ease),
+          color 0.35s ease;
+      }
+
+      /* Muted, non-clickable when a link isn't configured yet */
+      .link[data-empty="true"] {
+        opacity: 0.38;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      /* Crimson bar that slides in on hover */
+      .link::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--crimson);
+        transform: scaleY(0);
+        transform-origin: 50% 0;
+        transition: transform 0.45s var(--ease);
+      }
+
+      /* Soft crimson glow wash */
+      .link::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0;
+        background: radial-gradient(
+          circle at 0% 50%,
+          rgba(200, 16, 46, 0.16),
+          transparent 62%
+        );
+        transition: opacity 0.45s ease;
+      }
+
+      .link:hover,
+      .link:focus-visible {
+        color: var(--white);
+        border-color: rgba(200, 16, 46, 0.5);
+        box-shadow: 0 0 55px -25px var(--glow);
+        transform: translateY(-2px);
+      }
+      .link:hover::before,
+      .link:focus-visible::before {
+        transform: scaleY(1);
+      }
+      .link:hover::after,
+      .link:focus-visible::after {
+        opacity: 1;
+      }
+
+      .link__icon {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        border: 1px solid var(--line-strong);
+        color: var(--silver);
+        transition:
+          color 0.35s ease,
+          border-color 0.35s ease,
+          background 0.35s ease;
+      }
+      .link__icon svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .link:hover .link__icon,
+      .link:focus-visible .link__icon {
+        color: var(--white);
+        border-color: rgba(200, 16, 46, 0.6);
+        background: rgba(200, 16, 46, 0.08);
+      }
+
+      .link__label {
+        position: relative;
+        flex: 1;
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 400;
+      }
+
+      .link__arrow {
+        position: relative;
+        font-size: 0.95rem;
+        color: var(--muted-2);
+        transition:
+          transform 0.4s var(--ease),
+          color 0.35s ease;
+      }
+      .link:hover .link__arrow,
+      .link:focus-visible .link__arrow {
+        color: var(--crimson);
+        transform: translateX(4px);
+      }
+
+      /* Empty message */
+      .contact-empty {
+        margin-top: 8px;
+        color: var(--muted-2);
+        font-size: 0.85rem;
+        font-style: italic;
+        text-align: center;
+      }
+      .contact-empty[hidden] {
+        display: none;
+      }
+
+      /* Footer note */
+      .footer {
+        margin-top: auto;
+        padding-top: 28px;
+        border-top: 1px solid var(--line);
+        text-align: center;
+        font-size: 0.58rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="card">
+      <!-- Name -->
+      <header class="identity">
+        <p class="identity__eyebrow">
+          Personal Portfolio &nbsp;•&nbsp; Digital Identity
+        </p>
+        <h1 class="identity__name">
+          <span class="accent" aria-hidden="true"></span>
+          Waqas<br />Abdali
+        </h1>
+      </header>
+
+      <!-- Portrait -->
+      <div class="portrait">
+        <img
+          id="portraitImg"
+          alt=""
+          hidden
+          decoding="async"
+          fetchpriority="high"
+        />
+        <div class="portrait-placeholder" id="portraitPlaceholder"></div>
+        <span class="portrait-edge" aria-hidden="true"></span>
+      </div>
+
+      <!-- Bio -->
+      <p class="bio placeholder" id="bioText">
+        Waqas Talat Abdali is an experienced professional in service
+        coordination, operations, claims follow-up, logistics, and project
+        management. He has a strong background in team supervision, regional
+        operations, record keeping, and reporting. Known for his hardworking
+        nature, teamwork, and commitment to quality, he focuses on maintaining
+        efficient operations, solving problems, and achieving organizational
+        goals.
+      </p>
+
+      <!-- Social platform links (icon + label) -->
+      <div class="links" id="links">
+        <a class="link" data-contact="whatsappBusiness">
+          <span class="link__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              />
+            </svg>
+          </span>
+          <span class="link__label">WhatsApp Business</span>
+          <span class="link__arrow" aria-hidden="true">&#8594;</span>
+        </a>
+
+        <a class="link" data-contact="whatsappMessenger">
+          <span class="link__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+              />
+            </svg>
+          </span>
+          <span class="link__label">WhatsApp Messenger</span>
+          <span class="link__arrow" aria-hidden="true">&#8594;</span>
+        </a>
+      </div>
+
+      <p class="contact-empty" id="contactEmpty" hidden>
+        Contact details are being finalised. Please check back shortly.
+      </p>
+
+      <footer class="footer">Waqas Abdali &nbsp;•&nbsp; Digital Contact</footer>
+    </main>
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* ============================================================
+           ✏️  EDIT ONLY THIS BLOCK
+           ============================================================
+           Leave a value as '' — its button stays visible but muted
+           and does nothing when tapped. Fill it in to activate.
+           ============================================================ */
+        var CONFIG = {
+          /* Portrait — e.g. 'assets/waqas-abdali.webp' */
+          portrait: "Waqas Abdali pic.jpeg",
+
+          /* Bio — one or two short lines */
+          bio: "",
+
+          whatsappBusiness: "+923302525941", //(international, digits only)
+          whatsappMessenger: "+923149650689", // (international, digits only)
+        };
+        /* ============================================================
+           END OF CONFIGURATION
+           ============================================================ */
+
+        function $(sel, ctx) {
+          return (ctx || document).querySelector(sel);
+        }
+        function $$(sel, ctx) {
+          return Array.prototype.slice.call(
+            (ctx || document).querySelectorAll(sel),
+          );
+        }
+        function digits(v) {
+          return String(v == null ? "" : v).replace(/[^\d]/g, "");
+        }
+
+        /* --- Portrait --- */
+        var img = $("#portraitImg");
+        var ph = $("#portraitPlaceholder");
+        if (img && ph && CONFIG.portrait) {
+          img.src = CONFIG.portrait;
+          img.alt = "Portrait of Waqas Abdali";
+          img.hidden = false;
+          ph.hidden = true;
+        }
+
+        /* --- Bio --- */
+        var bio = $("#bioText");
+        if (bio && CONFIG.bio) {
+          bio.textContent = CONFIG.bio;
+          bio.classList.remove("placeholder");
+        }
+
+        /* --- Social links --- */
+        var builders = {
+          instagram: function (v) {
+            return v;
+          },
+          facebook: function (v) {
+            return v;
+          },
+          email: function (v) {
+            return "mailto:" + v;
+          },
+          whatsappBusiness: function (v) {
+            return "https://wa.me/" + digits(v);
+          },
+          whatsappMessenger: function (v) {
+            return "https://wa.me/" + digits(v);
+          },
+        };
+
+        var activeCount = 0;
+
+        $$("[data-contact]").forEach(function (el) {
+          var key = el.getAttribute("data-contact");
+          var value = CONFIG[key];
+          var build = builders[key];
+
+          if (value && build) {
+            el.setAttribute("href", build(String(value).trim()));
+            if (key !== "email") {
+              el.setAttribute("target", "_blank");
+              el.setAttribute("rel", "noopener noreferrer");
+            }
+            activeCount++;
+          } else {
+            /* Keep the row visible but disabled */
+            el.setAttribute("data-empty", "true");
+            el.setAttribute("aria-disabled", "true");
+            el.removeAttribute("href");
+          }
+        });
+
+        /* --- Empty message only when nothing is configured --- */
+        var emptyMsg = $("#contactEmpty");
+        if (emptyMsg && activeCount === 0) emptyMsg.hidden = false;
+      })();
+    </script>
+  </body>
+</html>
